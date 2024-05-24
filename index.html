@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+  <main class="container">
+  <nav id="menuContent">
+    <!-- the menu will be loaded dinamic  -->
+  </nav>
     <div class="page-container">
         <div class="sidebar">
           <form id="cityForm" class="city-form">
@@ -17,7 +21,12 @@
               placeholder="Bucuresti, Cluj, Pitesti"
               required
             />
-            <button class="btn btn-search">Cauta</button>
+            <!-- <a href="./page1.html">
+              <button class="btn btn-search">Cauta</button>
+            </a> -->
+
+            <button type="submit" class="btn btn-search">Cauta</button>
+
           </form>
           <div class="separator">
             <span class="separator-text">sau</span>
@@ -25,11 +34,14 @@
           <button id="locationBtn" class="btn btn-location">
             Foloseste locatia curenta
           </button>
+         <!-- <a href="./page1.html">page1</a>-->
         </div>
   
-        <div class="page-content"></div>
+        <div class="page1-content"></div>  
       </div>
 
-    <script src="./script.js"></script>
-</body>
+    <script src="/scripts/script.js"></script>
+    <script src="/scripts/main.js" type="module"></script>
+    </main>
+  </body>
 </html>

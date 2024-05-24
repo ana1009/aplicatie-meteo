@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicatie meteo</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+        #map {
+            height: 80%;
+        }
+        .form-container {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <nav id="menuContent">
+          <!-- the menu will be loaded dinamic  -->
+        </nav>
+
+        <div class="form-container">
+            <form id="cityForm">
+                <label for="city">Enter City:</label>
+                <input type="text" id="city" name="city" required>
+                <button type="submit">Search</button>
+            </form>
+            <button id="locationBtn">Use Current Location</button>
+        </div>
+        <div id="map"></div>
+
+        <div class="page1-content"></div>
+
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+        <script src="/scripts/script.js"></script>
+
+    <!-- <div id="map" style="height: 600px; width: 100%;"></div>-->
+   <script>
+        
+        // Initialize the map and set its view to a specific location (latitude, longitude) and zoom level
+        const map = L.map('map').setView([53.0000, 9.0000], 12);
+
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Add a marker at the same location
+        L.marker([45.78, 24.14]).addTo(map)
+            .bindPopup('Orasul ales de tine')
+            .openPopup();
+    </script>
+    <script src="/scripts/main.js" type="module"></script>
+    <!--
+    <div class="page-container">
+        <div class="page1-content"></div>
+    </div>
+
+    <script src="./script.js"></script>
+    <script>
+        async function displayWeatherFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const cityName = urlParams.get('city');
+            const lat = urlParams.get('lat');
+            const long = urlParams.get('long');
+
+            clearContent();
+
+            if (cityName) {
+                const cityCoordinates = await getCityCoordinates(cityName);
+
+                if(cityCoordinates === null){
+                    displayError(`Nu s-au putut prelua coordonatele orasului ${cityName}`);
+                    return;
+                }
+
+                const weatherResponse = await getWeather(cityCoordinates.lat, cityCoordinates.long);
+                const weatherData = parseApiData(weatherResponse);
+                displayWeather(cityName, weatherData);
+            }/* else if (lat && long) {
+                const weatherResponse = await getWeather(lat, long);
+                const weatherData = parseApiData(weatherResponse);
+                displayWeather("locatia ta", weatherData);
+            }*/
+            else if("geolocation" in navigator){
+                navigator.geolocation.getCurrentPosition(async (position) => {
+        
+                try{
+                    const weatherResponse = await getWeather(
+                        position.coords.latitude, 
+                        position.coords.longitude
+                    );
+                
+
+                    const weatherData = parseApiData(weatherResponse);
+                    console.log(weatherData);
+        
+                    displayWeather("locatia ta", weatherData);
+                } catch (error){
+                    displayError(`A aparut o eroare ${error}`);
+                }
+                })
+            } 
+            else {
+                displayError("Parametrii URL lipsesc.");
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', displayWeatherFromUrl);
+    </script>-->
+    </main>
+</body>
+</html>

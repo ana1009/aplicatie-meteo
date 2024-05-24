@@ -2,10 +2,11 @@ const API_GEOLOCATION_URL = 'https://geocoding-api.open-meteo.com/v1/search';
 const API_FORECAST_URL = 'https://api.open-meteo.com/v1/forecast';
 
 const cityForm = document.querySelector('#cityForm');
+const locationBtn = document.querySelector('#locationBtn');
 
 cityForm.addEventListener('submit', onCityFormSubmit);
-
-
+locationBtn.addEventListener('click', onLocationBtnClick);
+   
 async function onCityFormSubmit(event){
     event.preventDefault();
 
@@ -17,7 +18,9 @@ async function onCityFormSubmit(event){
     if(!cityName){
         alert("Introduceti numele unui oras");
         return;
-    }
+    }//else{
+      //  window.location.href = `./page1.html?city=${encodeURIComponent(cityName)}`;
+   // }
 
     const cityCoordinates = await getCityCoordinates(cityName);
     
@@ -32,6 +35,31 @@ async function onCityFormSubmit(event){
     console.log(weatherData);
 
     displayWeather(cityName, weatherData);
+}
+
+function onLocationBtnClick(){
+    clearContent();
+
+    if("geolocation" in navigator){
+        navigator.geolocation.getCurrentPosition(async (position) => {
+        
+            try{
+                const weatherResponse = await getWeather(
+                    position.coords.latitude, 
+                    position.coords.longitude
+                );
+
+                const weatherData = parseApiData(weatherResponse);
+                console.log(weatherData);
+        
+                displayWeather("locatia ta", weatherData);
+            } catch (error){
+                displayError(`A aparut o eroare ${error}`);
+            }
+        })
+    } else{
+        displayError("API-ul pentru geolocatie nu este disponibil");
+    }
 }
 
 async function getCityCoordinates(cityName){
@@ -58,7 +86,7 @@ async function getWeather(lat, long){
     apiUrl.searchParams.append("latitude", lat);
     apiUrl.searchParams.append("longitude", long);
     apiUrl.searchParams.append("timezone", "auto");
-    apiUrl.searchParams.append("hourly", "temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m");
+    apiUrl.searchParams.append("hourly", "temperature_2m,precipitation_probability,relative_humidity_2m,weather_code,wind_speed_10m");
 
     console.log(apiUrl.toString());
 
@@ -85,6 +113,7 @@ function parseApiData(data){
             currentWeather={
                 date: data.hourly.time[i],
                 temp: data.hourly.temperature_2m[i],
+                precipitation_probability: data.hourly.precipitation_probability[i],
                 wind: data.hourly.wind_speed_10m[i],
                 humidity: data.hourly.relative_humidity_2m[i],
                 code: data.hourly.weather_code[i],
@@ -93,6 +122,7 @@ function parseApiData(data){
             forecasts.push({
                 date: data.hourly.time[i],
                 temp: data.hourly.temperature_2m[i],
+                precipitation_probability: data.hourly.precipitation_probability[i],
                 wind: data.hourly.wind_speed_10m[i],
                 humidity: data.hourly.relative_humidity_2m[i],
                 code: data.hourly.weather_code[i],
@@ -107,7 +137,7 @@ function parseApiData(data){
 }
 
 function displayWeather(cityName, weather){
-    const pageContent = document.querySelector(".page-content");
+    const pageContent = document.querySelector(".page1-content");
 
     pageContent.append(createTodayWeatherSection(cityName, weather.current));
     pageContent.append(createForecastWeatherSection(cityName, weather.forecasts));
@@ -177,13 +207,16 @@ function createWeatherPanel(weather, isToday){
     const temp = document.createElement("p");
     temp.innerText = `Temperatura: ${weather.temp}°C`;
 
+    const precipitation_probability = document.createElement("p");
+    precipitation_probability.innerText = `Probabilitate precipitatii: ${weather.precipitation_probability}%`;
+
     const wind = document.createElement("p");
     wind.innerText = `Vant: ${weather.wind}km/h`;
 
     const humidity = document.createElement("p");
     humidity.innerText = `Umiditate: ${weather.humidity}%`;
 
-    weatherDetails.append(date, temp, wind, humidity);
+    weatherDetails.append(date, temp, precipitation_probability, wind, humidity);
 
     return weatherPanel;
 }
@@ -232,6 +265,6 @@ function getIcon(code, isNight){
 }
 
 function clearContent(){
-    const pageContent = document.querySelector('.page-content');
+    const pageContent = document.querySelector('.page1-content');
     pageContent.innerHTML = "";
 }
