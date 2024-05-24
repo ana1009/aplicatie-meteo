@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function onCityFormSubmit(event) {
         event.preventDefault();
 
-        clearContent();
+        //clearContent();
 
         const cityInput = cityForm.querySelector('#city');
         const cityName = cityInput.value.trim();
@@ -41,18 +41,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const cityCoordinates = await getCityCoordinates(cityName);
         if (cityCoordinates) {
-            updateMap(cityCoordinates.lat, cityCoordinates.lon, `Weather in ${cityName}`);
+            updateMap(cityCoordinates.lat, cityCoordinates.lon, `${cityName}`);
             // Fetch and display the weather for the city here
-            const weatherResponse = await getWeather(cityCoordinates.lat, cityCoordinates.lon);
-            const weatherData = parseApiData(weatherResponse);
-            displayWeather(cityName, weatherData);
+            //const weatherResponse = await getWeather(cityCoordinates.lat, cityCoordinates.lon);
+            //const weatherData = parseApiData(weatherResponse);
+            //displayWeather(cityName, weatherData);
         } else {
             alert(`Could not retrieve coordinates for ${cityName}`);
         }
     }
 
     function onLocationBtnClick() {
-        clearContent();
+        //clearContent();
 
         if ("geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition(async (position) => {
@@ -60,9 +60,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const lon = position.coords.longitude;
                 updateMap(lat, lon, 'Your current location');
                 // Fetch and display the weather for the current location here
-                const weatherResponse = await getWeather(lat, lon);
-                const weatherData = parseApiData(weatherResponse);
-                displayWeather("your location", weatherData);
+                //const weatherResponse = await getWeather(lat, lon);
+                //const weatherData = parseApiData(weatherResponse);
+                //displayWeather("your location", weatherData);
             }, () => {
                 alert('Geolocation failed. Please try again.');
             });
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return data;
     }
 
-    function parseApiData(data) {
+    /*function parseApiData(data) {
         const numberOfItems = data.hourly.time.length;
         let currentWeather = null;
         const forecasts = [];
@@ -267,5 +267,5 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             console.error("Element with class 'page1-content' not found.");
         }
-    }
+    }*/
 });
