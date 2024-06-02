@@ -1,0 +1,135 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+nav{
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+nav>ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    padding: 10px 0px;
+    background-color: #263561;
+}
+
+nav>ul>li {
+    list-style-type: none;
+}
+
+nav>ul>li>a {
+    text-decoration: none;
+    color: white;
+}
+
+body {
+    background-image: url('bg3.jpg');
+    background-size: cover; /* Ajustează dimensiunea imaginii pentru a acoperi întreaga pagină */
+    background-position: center; /* Centrare imagine */
+    background-repeat: no-repeat; /* Previne repetarea imaginii */
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Fundal semitransparent pentru a face textul mai lizibil */
+    padding: 10px;
+    border-radius: 8px;
+}
+
+header h1 {
+    font-size: 2.5em;
+    color: #007BFF;
+}
+
+header p {
+    font-size: 1.2em;
+    color: #555;
+}
+
+main {
+    width: 100%;
+    max-width: 1200px;
+}
+
+.intro {
+    margin-bottom: 30px;
+    font-size: 1.1em;
+    line-height: 1.6;
+    background-color: rgba(255, 255, 255, 0.8); /* Fundal semitransparent */
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.8); /* Fundal semitransparent */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    width: 250px;
+    padding: 20px;
+    text-align: center;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card h2 {
+    color: #007BFF;
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #555;
+    font-size: 1em;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 30px;
+    background-color: rgba(255, 255, 255, 0.8); /* Fundal semitransparent */
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.footer p {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+}
+
+.footer button {
+    background: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.footer button:hover {
+    background: #0056b3;
+}

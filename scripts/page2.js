@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (marker) {
             map.removeLayer(marker);
         }
-        marker = L.marker([lat, lon]).addTo(map)
+        marker = L.marker(L.latLng(lat, lon)).addTo(map)
             .bindPopup(popupText)
             .openPopup();
         map.setView([lat, lon], 13);

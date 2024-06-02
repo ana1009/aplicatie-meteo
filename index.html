@@ -4,44 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aplicatie meteo</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./index.css">
 </head>
 <body>
-  <main class="container">
-  <nav id="menuContent">
-    <!-- the menu will be loaded dinamic  -->
-  </nav>
-    <div class="page-container">
-        <div class="sidebar">
-          <form id="cityForm" class="city-form">
-            <label for="city">Introduceti orasul</label>
-            <input
-              id="city"
-              type="text"
-              placeholder="Bucuresti, Cluj, Pitesti"
-              required
-            />
-            <!-- <a href="./page1.html">
-              <button class="btn btn-search">Cauta</button>
-            </a> -->
-
-            <button type="submit" class="btn btn-search">Cauta</button>
-
-          </form>
-          <div class="separator">
-            <span class="separator-text">sau</span>
-          </div>
-          <button id="locationBtn" class="btn btn-location">
-            Foloseste locatia curenta
-          </button>
-         <!-- <a href="./page1.html">page1</a>-->
-        </div>
-  
-        <div class="page1-content"></div>  
-      </div>
-
-    <script src="/scripts/script.js"></script>
-    <script src="/scripts/main.js" type="module"></script>
+    <nav id="menuContent">
+        <!-- the menu will be loaded dinamic  -->
+      </nav>
+    <header>
+        <h1>Bun venit la MeteoMagic!</h1>
+        <p>Descoperă vremea de mâine, azi!</p>
+    </header>
+    <main>
+        <section class="intro">
+            <p>La MeteoMagic, ne dedicăm să-ți aducem informații precise și actualizate despre condițiile meteo din zona ta. Fie că planifici o excursie, o zi la plajă sau pur și simplu vrei să știi dacă trebuie să iei umbrela cu tine, suntem aici să te ajutăm să iei cele mai bune decizii.</p>
+        </section>
+        <section class="cards">
+            <div class="card">
+                <h2>Prognoze meteo detaliate</h2>
+                <p>Află cum va fi vremea în fiecare oră și în fiecare zi, cu date exacte despre temperatură, umiditate, vânt și precipitații.</p>
+            </div>
+            <div class="card">
+                <h2>Alerte meteo</h2>
+                <p>Fii la curent cu avertizările de vreme severă din zona ta, astfel încât să poți rămâne în siguranță.</p>
+            </div>
+            <div class="card">
+                <h2>Informații în timp real</h2>
+                <p>Actualizăm continuu datele pentru a-ți oferi cele mai recente informații disponibile.</p>
+            </div>
+            <div class="card">
+                <h2>Imagini spectaculoase</h2>
+                <p>Bucură-te de peisaje minunate, de la răsărituri încântătoare până la furtuni spectaculoase, toate surprinse în timp real.</p>
+            </div>
+        </section>
+        <section class="footer">
+            <p>Te invităm să explorezi aplicația noastră și să descoperi toate funcționalitățile pe care le-am creat pentru tine. Rămâi informat, rămâi în siguranță, rămâi conectat cu MeteoMagic!</p>
+            <button>Descarcă aplicația noastră</button>
+        </section>
     </main>
-  </body>
+    <script src="/scripts/main.js" type="module"></script>
+</body>
 </html>

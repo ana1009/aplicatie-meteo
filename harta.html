@@ -8,9 +8,11 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="/scripts/page2.js"></script>
     <script src="/scripts/main.js" type="module"></script>
+    <script src="https://kit.fontawesome.com/768db6d823.js"></script>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 </head>
 <body>
+    <main class="container">
     <nav id="menuContent">
         <!-- the menu will be loaded dinamic  -->
       </nav>
@@ -18,14 +20,19 @@
         <div class="sidebar">
             <form id="cityForm" class="city-form">
                 <label for="city">Introduceti orasul</label>
-                <input
-                  id="city"
-                  type="text"
-                  placeholder="Bucuresti, Cluj, Pitesti"
-                  required
+                <div class="search-container">
+                  <input class="search-input"
+                    id="city"
+                    type="text"
+                    placeholder="Bucuresti, Cluj, Sibiu"
+                    required
                   />
-        <!-- <input type="text" id="city" placeholder="Introduceti numele orasului"> -->
-            <button type="submit" class="btn btn-search">Vezi locatia</button>
+                  <!-- <a href="./page1.html">
+                    <button class="btn btn-search">Cauta</button>
+                  </a> -->
+      
+                  <button type="submit" class="search-button"> <i class="fas fa-search"></i> </button>
+                </div>
         </form>
          <!--<button id="locationBtn">Foloseste locatia curenta</button>-->
         <div class="separator">
@@ -38,5 +45,6 @@
         <div id="map" style="height: 400px;"></div>
         <!-- <div class="page1-content"></div>-->
     </div>
+</main>
 </body>
 </html>
