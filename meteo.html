@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aplicatie meteo</title>
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./meniu.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <main class="container">
-  <nav id="menuContent">
+  <nav id="meniu">
     <!-- the menu will be loaded dinamic  -->
   </nav>
     <div class="page-container">
@@ -38,7 +40,9 @@
          <!-- <a href="./page1.html">page1</a>-->
         </div>
   
-        <div class="page1-content"></div>  
+        <div class="page1-content">
+          <canvas id="temperatureChart" width="400" height="200"></canvas>
+        </div>  
       </div>
 
     <script src="/scripts/script.js"></script>

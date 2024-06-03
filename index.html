@@ -5,13 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aplicatie meteo</title>
     <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./meniu.css">
 </head>
 <body>
-    <nav id="menuContent">
-        <!-- the menu will be loaded dinamic  -->
-      </nav>
+    <nav class="navbar">
+        <div class="navbar-brand">Aplicatie Meteo</div>
+        <div class="navbar-menu">
+            <ul class="navbar-list">
+                <li class="navbar-item"><a href="./index.html" class="navbar-link">Despre noi</a></li>
+                <li class="navbar-item"><a href="./meteo.html" class="navbar-link">Meteo</a></li>
+                <li class="navbar-item"><a href="./harta.html" class="navbar-link">Harta</a></li>
+                <li class="navbar-item"><a href="#" class="navbar-link">Contact</a></li>
+            </ul>
+        </div>
+        <div class="navbar-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
     <header>
-        <h1>Bun venit la MeteoMagic!</h1>
+        <h1>Bun venit la MeteoPro!</h1>
         <p>Descoperă vremea de mâine, azi!</p>
     </header>
     <main>
@@ -36,11 +48,12 @@
                 <p>Bucură-te de peisaje minunate, de la răsărituri încântătoare până la furtuni spectaculoase, toate surprinse în timp real.</p>
             </div>
         </section>
-        <section class="footer">
+       <!-- <section class="footer">
             <p>Te invităm să explorezi aplicația noastră și să descoperi toate funcționalitățile pe care le-am creat pentru tine. Rămâi informat, rămâi în siguranță, rămâi conectat cu MeteoMagic!</p>
             <button>Descarcă aplicația noastră</button>
-        </section>
+        </section>-->
     </main>
     <script src="/scripts/main.js" type="module"></script>
+    <script src="https://kit.fontawesome.com/768db6d823.js"></script>
 </body>
 </html>

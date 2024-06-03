@@ -97,7 +97,7 @@ async function getWeather(lat, long){
 
 function parseApiData(data){
     const numberOfItems = data.hourly.time.length;
-    let currentWeather = null;
+    let currentWeather = [];
     const forecasts =[];
 
     const currentDatetime = new Date();
@@ -109,15 +109,15 @@ function parseApiData(data){
 
         const isCurrentHour = currentDatetime.getHours() === itemDatetime.getHours();
 
-        if(isToday && isCurrentHour){
-            currentWeather={
+        if(isToday){
+            currentWeather.push({
                 date: data.hourly.time[i],
                 temp: data.hourly.temperature_2m[i],
                 precipitation_probability: data.hourly.precipitation_probability[i],
                 wind: data.hourly.wind_speed_10m[i],
                 humidity: data.hourly.relative_humidity_2m[i],
                 code: data.hourly.weather_code[i],
-            };
+            });
         }else if(isCurrentHour){
             forecasts.push({
                 date: data.hourly.time[i],
@@ -137,13 +137,59 @@ function parseApiData(data){
 }
 
 function displayWeather(cityName, weather){
+    clearContent();
+    
     const pageContent = document.querySelector(".page1-content");
 
     pageContent.append(createTodayWeatherSection(cityName, weather.current));
     pageContent.append(createForecastWeatherSection(cityName, weather.forecasts));
 
+    const todaySection = createTodayWeatherSection(cityName, weather.current);
+    pageContent.append(todaySection);
+
+    const forecastSection = createForecastWeatherSection(cityName, weather.forecasts);
+    pageContent.append(forecastSection);
+
+    displayTemperatureChart(weather.current);
 }
 
+function displayTemperatureChart(currentWeather) {
+    const canvas = document.getElementById('temperatureChart');
+
+    if (!canvas) {
+        console.error('Canvas element not found');
+        return;
+    }
+
+    const ctx = canvas.getContext('2d');
+    const labels = currentWeather.map(weather => {
+        const date = new Date(weather.date);
+        return `${date.getHours()}:00`;
+    });
+
+    const temperatures = currentWeather.map(weather => weather.temp);
+
+    new Chart(ctx, {
+        type: 'line', // poți schimba 'line' cu 'bar' pentru grafic de tip bar
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Temperatura (°C)',
+                data: temperatures,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
 
 function createTodayWeatherSection(cityName, currentWeather){
     const todaySection = document.createElement('div');
@@ -153,8 +199,31 @@ function createTodayWeatherSection(cityName, currentWeather){
 
     todaySection.append(title);
 
-    const weatherPanel = createWeatherPanel(currentWeather, true);
-    todaySection.append(weatherPanel);
+    //const weatherPanel = createWeatherPanel(currentWeather, true);
+    //todaySection.append(weatherPanel);
+
+    // Verifică dacă există date pentru ora curentă
+    const currentHourData = currentWeather.find(weather => {
+        const date = new Date(weather.date);
+        return date.getHours() === new Date().getHours();
+    });
+
+    if (currentHourData) {
+        const weatherPanel = createWeatherPanel(currentHourData, true);
+        todaySection.append(weatherPanel);
+    } else {
+        const noDataMessage = document.createElement('p');
+        noDataMessage.innerText = "Nu sunt disponibile date pentru ora curentă.";
+        todaySection.append(noDataMessage);
+    }
+
+    // Adaugă elementul canvas pentru grafic
+    const canvas = document.createElement('canvas');
+    canvas.id = 'temperatureChart';
+    canvas.width = 400;
+    canvas.height = 200;
+    todaySection.append(canvas);
+
     return todaySection;
 }
 
