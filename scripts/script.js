@@ -138,11 +138,11 @@ function parseApiData(data){
 
 function displayWeather(cityName, weather){
     clearContent();
-    
+
     const pageContent = document.querySelector(".page1-content");
 
-    pageContent.append(createTodayWeatherSection(cityName, weather.current));
-    pageContent.append(createForecastWeatherSection(cityName, weather.forecasts));
+    //pageContent.append(createTodayWeatherSection(cityName, weather.current));
+    //pageContent.append(createForecastWeatherSection(cityName, weather.forecasts));
 
     const todaySection = createTodayWeatherSection(cityName, weather.current);
     pageContent.append(todaySection);
@@ -177,7 +177,7 @@ function displayTemperatureChart(currentWeather) {
                 label: 'Temperatura (°C)',
                 data: temperatures,
                 borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                backgroundColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1
             }]
         },
