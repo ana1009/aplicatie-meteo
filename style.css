@@ -6,7 +6,7 @@
 
 .container {
     max-width: 1200px;
-    margin: 20px auto;
+    margin: auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -14,24 +14,55 @@
     background-color: #e6edef;
 }
 
-nav>ul {
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 20px;
-    padding: 10px 0px;
     background-color: #263561;
-}
-
-nav>ul>li {
-    list-style-type: none;
-}
-
-nav>ul>li>a {
-    text-decoration: none;
     color: white;
+    padding: 20 px auto;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
 }
 
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar-menu {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-list {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.navbar-item {
+    margin: 0 10px;
+}
+
+.navbar-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.navbar-link:hover {
+    text-decoration: underline;
+}
+
+.navbar-toggle {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
 body {
     font-family: sans-serif;
     background-color: #f7f6f9;
@@ -53,13 +84,13 @@ body {
 .search-input {
     padding: 10px;
     font-size: 1em;
-    border: 2px solid #007BFF;
+    border: 2px solid #263561;
     border-right: none; /* Elimină marginea din dreapta pentru a părea lipite */
     border-radius: 25px 0 0 25px; /* Rotunjeste colțurile stânga */
     outline: none; /* Elimină conturul implicit */
 }
 .search-button {
-    background-color: #007BFF;
+    background-color: #263561;
     border: none;
     border-radius: 50%;
     width: 50px;
