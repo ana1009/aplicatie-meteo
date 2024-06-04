@@ -30,7 +30,7 @@ nav>ul>li>a {
 }
 
 body {
-    background-image: url('bg3.jpg');
+    background-image: url('background.jpg');
     background-size: cover; /* Ajustează dimensiunea imaginii pentru a acoperi întreaga pagină */
     background-position: center; /* Centrare imagine */
     background-repeat: no-repeat; /* Previne repetarea imaginii */
@@ -46,6 +46,8 @@ body {
 header {
     text-align: center;
     margin-bottom: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
     background-color: rgba(255, 255, 255, 0.8); /* Fundal semitransparent pentru a face textul mai lizibil */
     padding: 10px;
     border-radius: 8px;
@@ -68,11 +70,14 @@ main {
 
 .intro {
     margin-bottom: 30px;
-    font-size: 1.1em;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 1.0em;
     line-height: 1.6;
     background-color: rgba(255, 255, 255, 0.8); /* Fundal semitransparent */
-    padding: 10px;
+    padding: 30px;
     border-radius: 8px;
+    text-align: center;
 }
 
 .cards {
@@ -91,6 +96,7 @@ main {
     padding: 20px;
     text-align: center;
 }
+
 
 .card:hover {
     transform: translateY(-10px);
